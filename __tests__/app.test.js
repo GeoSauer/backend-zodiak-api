@@ -34,4 +34,12 @@ describe('zodiac routes', () => {
     };
     expect(res.body).toEqual(aquarius);
   });
+
+  it('/horoscopes should return a list of horoscopes', async () => {
+    const res = await request(app).get('/horoscopes');
+    const expected = signs.map((sign) => {
+      return { name: sign.name, horoscope: sign.horoscope };
+    });
+    expect(res.body).toEqual(expected);
+  });
 });
